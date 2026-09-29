@@ -1,7 +1,7 @@
 <?php
-// ==========================================
-// 1. LINEAIR ZOEKEN
-// ==========================================
+
+// 1. lineair zoeken
+
 function linearSearch($array, $target) {
     foreach ($array as $element) {
         if ($element == $target) {
@@ -11,15 +11,15 @@ function linearSearch($array, $target) {
     return false;
 }
 
-// ==========================================
-// 2. BINAIR ZOEKEN
-// ==========================================
+
+// 2. binair zoeken
+
 function binarySearch($array, $target, $low, $high) {
     if ($low > $high) {
         return false;
     }
     
-    // Zorg ervoor dat mid een geheel getal is
+    // zorg ervoor dat mid een geheel getal is
     $mid = (int)(($low + $high) / 2);
 
     if ($array[$mid] == $target) {
@@ -31,37 +31,36 @@ function binarySearch($array, $target, $low, $high) {
     }
 }
 
-// ==========================================
-// 3. TESTEN MET 10.000 NUMMERS EN TIMING
-// ==========================================
+// 3testen met 10 000 nummers en timing
+
 
 echo "Bezig met genereren van 10.000 willekeurige getallen...\n";
 
-// Genereer een array met 10.000 willekeurige getallen
+// Genereer een array met 10 000 willekeurige getallen
 $array = [];
 for ($i = 0; $i < 10000; $i++) {
     $array[] = rand(1, 100000);
 }
 
-// Sorteer de array van laag naar hoog (vereist voor binair zoeken)
+// sorteer de array van laag naar hoog (vereist voor binair zoeken)
 sort($array);
 
-// Het getal waar we naar op zoek zijn
+// het getal waar we naar op zoek zijn
 $target = $array[5000]; // Pak een bestaand getal uit het midden
 
-// --- Test Lineair Zoeken ---
+// test lineair zoeken
 $startTijdLineair = microtime(true);
 $gevondenLineair = linearSearch($array, $target);
 $eindTijdLineair = microtime(true);
 $duurLineair = ($eindTijdLineair - $startTijdLineair) * 1000; // in milliseconden
 
-// --- Test Binair Zoeken ---
+// test binair zoeken
 $startTijdBinair = microtime(true);
 $gevondenBinair = binarySearch($array, $target, 0, count($array) - 1);
 $eindTijdBinair = microtime(true);
 $duurBinair = ($eindTijdBinair - $startTijdBinair) * 1000; // in milliseconden
 
-// --- Resultaten tonen ---
+// resultaten tonen
 echo "\n--- RESULTATEN (Array van 10.000 elementen) ---\n";
 echo "Gezocht naar getal: $target\n\n";
 
